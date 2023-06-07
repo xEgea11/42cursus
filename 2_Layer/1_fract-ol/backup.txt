@@ -1,0 +1,35 @@
+NAME = a.out
+
+FILES = main.c 
+OBJ = $(FILES.c=.o);
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra 
+LIB = minilibx_opengl_20191021
+LINK = -L $(LIB) -lmlx -framework OpenGL -framework Appkit
+
+
+%.o : %.c
+	$(CC) $(CFLAGS) -I $(LIB)/mlx.h -c $< -o $@
+	
+$(NAME) : main.c
+	@make -sC $(LIB)
+	@echo "Compilación librería hecha"
+	@$(CC) -I $(LIB)/mlx.h $(LINK) main.c
+	@echo "Compilación terminada" 
+
+
+.PHONY : all clean fclean re exec
+
+all : $(NAME)
+
+clean :
+	@rm -f a.out
+	@echo "Ejecutable eliminado"
+
+fclean : clean
+
+re : fclean all 
+
+exec :
+	@echo "Ejecutando programa..."
+	@./a.out

@@ -1,0 +1,1 @@
+-rw-r--r--   1 regea-go  2023_malaga      319 Jun  6 23:48 Makefile
